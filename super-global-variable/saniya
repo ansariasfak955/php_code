@@ -1,0 +1,68 @@
+<?php
+
+echo 't=This is saniya Terminal';
+echo PHP_EOL;
+echo 'This Saniya Freamwork : version 1.x';
+echo PHP_EOL;
+
+$commands=[
+'--help' => 'This is Help Command',
+'--v' => '1.a',
+'--a' => 'For Addition',
+'--s' => 'For Subtraction',
+'--m' => 'For Multiplication',
+'--d' => 'For Division',
+'--r' => 'For Remainder',
+];
+echo PHP_EOL;
+foreach($commands as $key => $value){
+	printf("%s\t:\t%s\n",$key,$value);
+}
+$output='';
+if(isset($argv[1])){
+	$command=$argv[1];
+	echo "\e[H\e[J";
+	switch($command){
+		case '--v':
+		$output='1.a';
+		break;
+		
+		case '--a':
+		$a = readline('Enter a Number 1 : ');
+		$b = readline('Enter a Number 2 : ');
+		$output = $a+$b;
+		break;
+		
+		case '--s':
+		$a = readline('Enter a Number 1 : ');
+		$b = readline('Enter a Number 2 : ');
+		$output = $a-$b;
+		break;
+		
+		case '--m':
+		$a = readline('Enter a Number 1 : ');
+		$b = readline('Enter a Number 2 : ');
+		$output = $a*$b;
+		break;
+		
+		case '--d':
+		$a = readline('Enter a Number 1 : ');
+		$b = readline('Enter a Number 2 : ');
+		$output = $a/$b;
+		break;
+		
+		case '--r':
+		$a = readline('Enter a Number 1 : ');
+		$b = readline('Enter a Number 2 : ');
+		$output = $a%$b;
+		break;
+		
+		
+		default:
+		$output='Invalid Command Supplied';
+		break;
+	}
+}
+echo $output;
+		
+?>

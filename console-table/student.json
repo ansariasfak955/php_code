@@ -1,0 +1,28 @@
+{
+	"collection":"student",
+	"author":"asfak",
+	"date":"27-jan-2022",
+	"time":"10:02:00 Am",
+	"data":[
+	{
+		"roll":1001,
+		"name":"asfak",
+		"marks":50
+	},
+	{
+		"roll":1002,
+		"name":"ansari",
+		"marks":80
+	},
+	{
+		"roll":1003,
+		"name":"abul",
+		"marks":88
+	},
+	{
+		"roll":1004,
+		"name":"zahid",
+		"marks":90
+	}
+	]
+}
