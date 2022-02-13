@@ -21,7 +21,7 @@ require_once __DIR__.'/api/functions.php';
 	<div class="container">
 		<div class="row mt-4">
 			<div class="col-sm-4">
-				<form>
+				<form id="form">
 					<h3 class="my-4 text-center">Register Here</h3>
 		        	<div class="input-group mb-3">
 		        		<input type="text" class="form-control" id="name" placeholder="Enter Full Name">
@@ -30,7 +30,9 @@ require_once __DIR__.'/api/functions.php';
 		        		<input type="text" class="form-control" id="email" placeholder="Enter Email">
 		        	</div>
 		        	 
-		        	<input type="button" id="submit" value="Register" class="btn btn-primary form-control mb-5">
+		        	<input type="button" id="submit" value="Register" class="btn btn-primary form-control mb-5" style="display:block">
+                    <input type="reset" name="reset" id="resetid" class="btn btn-primary form-control mb-5">
+                    <input type="button" value="update" style="display:none" id="update" class="btn btn-primary form-control mb-5">
 		         </form>
 			</div>
 			<div class="col-sm-8">
@@ -39,6 +41,8 @@ require_once __DIR__.'/api/functions.php';
 				  	<th>Id</th>
 				  	<th>Name</th>
 				  	<th>Email</th>
+				  	<th>Edit</th>
+				  	<th>Delete</th>
 				  </tr>
 				  <tbody id="records">
 
@@ -70,27 +74,47 @@ require_once __DIR__.'/api/functions.php';
                 window.alert("Email is required");
             }
 
-            if(name!="" && email!=""){
+            if(name != "" && email != ""){
                 insert_emp_data(name,email);
             }
             
        })
+
+       //Upadate Logic
+$("#update").click(function(){
+    let name = $("#name").val();
+    let email = $("#email").val();
+    let id = $("#hidden-id").val();
+
+    updateEmp(id,name,email);
 });
+
+//Reset Logic
+$("#resetid").click(function(){
+    let id = $("#hidden-id").val();
+    get_emp_data(id);
+
+    });
+
+});
+
 
 function load_emp_data(){
 
     $.ajax({
         url:"<?php echo url('api/getemp.php')?>",
         type:"GET",
-        success:function(response){
-            if(response.status==true && response.code ==200){
+        success: function(response){
+            if(response.status == true && response.code == 200){
                 let output = ``;
                 response.data.forEach(function(emp,index){
-                    output = output +`                
+                    output = output + `                
             <tr>
                 <td>${emp.id}</td>
                 <td>${emp.name}</td>
                 <td>${emp.email}</td>
+                <td><a href="javascript:handleEdit('${emp.id}');">Edit</a></td>
+                <td><a href="javascript:handleDelete('${emp.id}');">Delete</a></td>
             </tr>`;
                 });
 
@@ -104,17 +128,49 @@ function load_emp_data(){
     
 }
 
+function handleEdit(id){
+    $("#update").show();
+    $("#submit").hide();
+    $("#hidden-id").remove();
+
+    get_emp_data(id);
+}
+function get_emp_data(id){
+    $.ajax({
+        url : "<?php echo url('api/getoneemp.php') ?>",
+        type : "POST",
+        data : {
+            'id':id
+        },
+        success: function(response){
+            if(response.code == 200 && response.status == true){
+                console.log(response.data);
+                var emp = response.data;
+                let name = emp.name;
+                let email = emp.email;
+                let id = emp.id;
+                $("#name").val(name);
+                $("#email").val(email);
+                $("#form").append(`<input type="hidden" id="hidden-id" value="${id}">`)
+
+            }else{
+                window.alert(response.message);
+            }
+        },
+    });
+}
+
 function insert_emp_data(name,email){
     $.ajax({
         url:"<?php echo url('api/addemp.php'); ?>",
         type:"POST",
         data:{
-            "name":name,
-            "email":email,
+            "name": name,
+            "email": email,
         },
-        success:function(response){
+        success: function(response){
             if(response.code == 200 && response.status == true){
-                window.alert(response.message);
+                //window.alert(response.message);
                 $("#name").val("");
                 $("#email").val("");
             }else{
@@ -125,6 +181,47 @@ function insert_emp_data(name,email){
             load_emp_data();
         }
     })
+}
+
+function handleDelete(id){
+    if(window.confirm("Do you want to Delete ?")){
+        $.ajax({
+            url : "<?php echo url("api/deleteEmp.php"); ?>",
+            type : "POST",
+            data : {"id":id},
+            success:function(response){
+                if(response.status == true && response.code == 200){
+                    load_emp_data();
+                }else{
+                    window.alert(response.message);
+                }
+            },
+        });
+    }
+}
+
+function updateEmp(id,name,email){
+    $.ajax({
+        url : "<?php echo url('api/updateEmp.php'); ?>",
+        type:"POST",
+        data:{
+            "id": id,
+            "name": name,
+            "email": email
+        },
+        success: function(response){
+            if(response.code == 200 && response.status == true){
+                load_emp_data();
+                $("#name").val("");
+                $("#email").val("");
+                $("#hidden-id").remove();
+                $("#update").hide();
+                $("#submit").show();
+            }else{
+                window.alert(response.message);
+            }
+        }
+    });
 }
 	</script>
 
