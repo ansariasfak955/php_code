@@ -16,3 +16,5 @@ print_r($y);
 print_r($x+$y);  //$x.add($y)
 print_r($y+$x);  //$x.add(xy)
  
+ //overwrite the duplicate and insert the unique
+ //total array = extra element + replaced element

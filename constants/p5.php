@@ -1,5 +1,5 @@
 <?php
-//wap in php to make non-case-sebsitive user-defined Constant
+//wap in php to make non-case-sensitive user-defined Constant
 
 error_reporting(E_USER_DEPRECATED);
 

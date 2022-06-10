@@ -10,3 +10,7 @@ $y[6]=100;
 print_r($x);
 print_r($y);
 print_r($x+$y);   //$x.add($y)
+
+//subscript unique  : add
+//subscript duplicate : over-write 
+//latest value,  will be stored

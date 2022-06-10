@@ -204,17 +204,17 @@ public function row($i){
 		}
 
 }
-$query = new Query();
-echo PHP_EOL;
+//$query = new Query();
+//echo PHP_EOL;
 // $query->insert('emp',['name'=>'mukesh kumar','email'=>'mukesh@gmail.com']);
 
 // echo PHP_EOL;
 
 // echo $query->getId();
 
-$records = $query->select('id,name,email')->table('emp')->orderBy('id','asc')->limit(5,8)->allrecords();
+//$records = $query->select('id,name,email')->table('emp')->orderBy('id','asc')->limit(5,8)->allrecords();
  
-var_dump($query->toArray());
+//var_dump($query->toArray());
 
 
 // echo PHP_EOL;

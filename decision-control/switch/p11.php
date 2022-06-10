@@ -17,7 +17,7 @@ switch($n){
 		echo "case 4 is running \n";
 		break;
 	case 5:
-		echo "case $5 is running \n";
+		echo "case 5 is running \n";
 		break;
 	default:
 		echo "default case is running \n";

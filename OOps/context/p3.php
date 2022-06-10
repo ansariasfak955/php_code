@@ -1,0 +1,6 @@
+<?php
+
+//wap in php 
+
+
+?>

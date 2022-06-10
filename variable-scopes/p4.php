@@ -21,7 +21,8 @@ $b=100;
 function test2(){
 	global $a;
 	global $b;
-	echo "the value of a from global inside test2 : $a";
+	echo "the value of a from
+	global inside test2 : $a";
 	echo PHP_EOL;
 	echo "the value of a from global inside test2 : $b";
 	echo PHP_EOL;

@@ -1,7 +1,8 @@
 <?php
 
 //wap in function to show string multiplys
-$a=readline('enter a string :')
+
+$a=readline('enter a string :');
 $n=readline('hoe many times to be repeated :');
 echo string_multiply($a,$n);
 function string_multiply($str='',$n=0){

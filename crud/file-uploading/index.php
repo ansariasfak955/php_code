@@ -10,8 +10,8 @@
     <h1>File Uploading</h1>
     <hr/>
     <form action="upload.php" method="post" enctype="multipart/form-data">
-       Select File : <input type="file" name="attachment" required>
-        <input type="submit">
+       Select File : <input type="file" name="attachment" required> <br>
+        <input type="submit" value="submit">
     </form>
 </body>
 </html>

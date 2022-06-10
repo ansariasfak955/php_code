@@ -25,3 +25,4 @@ echo PHP_EOL;
 echo 'the value of $a is : "'.$a.'"';
 echo PHP_EOL;
 echo 'the value of $a is : '."'$a'";
+

@@ -4,6 +4,6 @@
 
 for($a=1;$a<100;$a++){
 	echo "Hello $a \n";
-
+for($a=1;$a<100;print("Hello $a \n"),$a++);
 }
 ?>

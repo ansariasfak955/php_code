@@ -14,6 +14,3 @@ print_r(count($y));
 print_r($x+$y);   //$x.add($y)
 print_r($y+$x);
 
-//subscript unique  : add
-//subscript duplicate : over-write 
-//latest value,  will be stored

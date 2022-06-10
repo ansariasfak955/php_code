@@ -1,7 +1,7 @@
 
 <?php
 
-//wap in php to find odd and even 
+//wap in php to find odd and even in single if
 
 $n=readline('enter the number :');
 if($n%2==0){
